@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Employee</title>
+
+  <style>
+    /* Style for the container */
+    .container {
+      max-width: 600px;
+      margin: 50px auto 0; /* Center horizontally and add space from top */
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for the header */
+    .header {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333; /* Dark Gray */
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+    }
+
+    /* Style for the table */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    /* Style for table headings */
+    .table th {
+      background-color: #007bff; /* Blue */
+      color: #fff; /* White */
+      padding: 10px;
+      text-align: left;
+    }
+
+    /* Style for table data */
+    .table td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd; /* Light Gray */
+    }
+
+    /* Style for table data alternate rows */
+    .table tr:nth-child(even) {
+      background-color: #f2f2f2; /* Light Gray */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="header">Employee Information</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>First Name</td>
+        <td><%= @employee.f_name %></td>
+      </tr>
+      <tr>
+        <td>Middle Name</td>
+        <td><%= @employee.m_name %></td>
+      </tr>
+      <tr>
+        <td>Surname</td>
+        <td><%= @employee.surname %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>
