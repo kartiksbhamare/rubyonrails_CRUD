@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get "employees-info", to:"employees#index"
   get "new", to:"employees#new"
-  
+  delete '/employees/:id', to: 'employees#destroy'
 end
