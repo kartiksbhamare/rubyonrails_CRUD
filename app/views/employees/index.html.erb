@@ -1,107 +1,127 @@
-<%= flash[:notice]%>
 
 <style>
-  /* Style for the header */
-    /* Style for the navigation bar */
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      background-color: #f1f1f1; /* Light Gray */
-      overflow: hidden;
-    }
+  /* Additional CSS for dropdown button */
+  .dropdown-menu {
+    min-width: auto;
+  }
+.header{
+  text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+  /* Centering the table */
+  .table-container {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+  }
 
-    nav li {
-      float: left;
-    }
-
-    nav li a {
-      display: block;
-      color: black;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    /* Style for the "Create New Employee" button */
-    .create-button a {
-      background-color: #4CAF50; /* Green */
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-  .header {
-    font-size: 36px;
+  /* Styling for the create button */
+  .create-button {
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 20px;
+  }
+
+  /* Styling for the "Create New Employee" button */
+  .create-button a {
+    background-color: #e9ecef; /* Light Gray */
     color: #333; /* Dark Gray */
-    font-family: Arial, sans-serif;
-    text-transform: uppercase;
+    border: none;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
   }
 
-  /* Style for the table */
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto; /* Center the table horizontally */
+  .create-button a:hover {
+    background-color: #f1f1f1; /* Lighter Gray */
+    color: #333; /* Dark Gray */
   }
 
-  /* Style for table headings */
+  /* Styling for alternating row colors */
+  .table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Light Gray */
+  }
+
+  /* Styling for table borders */
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  /* Styling for table header */
   .table th {
     background-color: #007bff; /* Blue */
-    color: #fff; /* White */
-    padding: 10px;
-    text-align: center; /* Center the heading text */
+    color: white;
+    text-align: center;
   }
 
-  /* Style for table data */
-  .table td {
-    padding: 10px;
-    text-align: center; /* Center the data */
-    border-bottom: 1px solid #ddd; /* Light Gray */
+  /* Styling for table actions dropdown */
+  .dropdown-toggle {
+    background-color: #6c757d; /* Gray */
+    color: white;
+    border: none;
   }
 
-  /* Style for table data alternate rows */
-  .table tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light Gray */
+  .dropdown-toggle:hover {
+    background-color: #5a6268; /* Darker Gray */
+  }
+
+  .dropdown-menu {
+    background-color: #f8f9fa; /* Lighter Gray */
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .dropdown-menu a {
+    color: #333; /* Dark Gray */
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #cce5ff; /* Light Blue */
   }
 </style>
 
-<h1 class="header">Employee Information</h1>
+<div class="table-container">
+  <h1 class="header">Employee Information</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Middle Name</th>
-      <th>Surname</th>
-      <th>action</th>
-      <th>Information</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @employees.each do |employee| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= employee.f_name %></td>
-        <td><%= employee.m_name %></td>
-        <td><%= employee.surname %></td>
-        <td > <%= link_to 'edit', edit_employee_path(employee) %></td>
-        <td > <%= link_to 'view info', employee_path(employee) %></td>
-        <td ><%= link_to 'Delete',employee_path(employee), method: :delete,  class: "btn btn-danger",data: { confirm: 'Are you sure?' } %></td>
+        <th style="width: 20%;">First Name</th>
+        <th style="width: 20%;">Middle Name</th>
+        <th style="width: 20%;">Surname</th>
+        <th style="width: 20%;">Action</th>
       </tr>
-      
-    <% end %>
-    
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.f_name %></td>
+          <td><%= employee.m_name %></td>
+          <td><%= employee.surname %></td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Actions
+              </button>
+              <div class="dropdown-menu">
+                <%= link_to 'Edit', edit_employee_path(employee), class: "dropdown-item" %>
+                <%= link_to 'View Info', employee_path(employee), class: "dropdown-item" %>
+                <%= link_to 'Delete', employee_path(employee), method: :delete, class: "dropdown-item", data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 <ul>
-    <li class="create-button"><%= link_to "Create New Employee Here", new_employee_path %></li>
+    <li class="create-button" style="list-style-type: none;">
+        <%= link_to "Create New Employee Here", new_employee_path %>
+    </li>
 </ul>
+</div>
