@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Details</title>
+  <style>
+    /* Container styles */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0 auto;
+      padding: 0 20px; /* Adjust the left and right margin as needed */
+    }
+
+    /* Card styles */
+    .card {
+      width: 50%;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #007bff;
+      color: #fff;
+      border-bottom: 1px solid #ccc;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      color: #333;
+    }
+
+    .card-text {
+      color: #666;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    /* Adjust image size */
+    .card-image {
+      max-width: 100%; /* Maximum width */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 20px; /* Add some space below the image */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h5 class="card-header">Document Details</h5>
+      <div class="card-body">
+        <div>
+          <% if @document.image.attached?  %>
+            <%= image_tag @document.image, class: "card-image" %>
+          <% end %>
+        </div>
+        <div>
+          <strong>Name:</strong>
+          <%= @document.name %>
+        </div>
+        <br>
+        <div>
+          <strong>Type:</strong>
+          <%= @document.type %>
+        </div>
+        <br>
+        <div>
+          <strong>Employee:</strong>
+          <%= @document.employee.f_name %>  <%= @document.employee.m_name %> <%= @document.employee.surname %>
+        </div>
+        <br>
+        <div>
+          <%= link_to 'Edit', edit_document_path(@document), class: "btn btn-primary" %>
+          <%= link_to 'Delete', document_path(@document), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+          <%= link_to 'Back', documents_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

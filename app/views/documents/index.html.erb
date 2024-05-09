@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Index</title>
+  <style>
+    /* Body styles */
+    body {
+      margin: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Title styles */
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* Link styles */
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    /* Dropdown button styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    /* Button styles */
+    .button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Button container styles */
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Document Index</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Employee ID</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.name %></td>
+        <td><%= document.type %></td>
+        <td><%= document.employee_id %></td>
+        <td>
+          <div class="dropdown">
+            <button class="button">Actions</button>
+            <div class="dropdown-content">
+              <%= link_to 'Show', document %>
+              <%= link_to 'Edit', edit_document_path(document) %>
+              <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <%= link_to 'Home', root_path, class: "button" %>
+  <%= link_to 'Employees', employees_path, class: "button" %>
+  <%= link_to 'Create Employee', new_employee_path, class: "button" %>
+  <%= link_to 'Create Document', new_document_path, class: "button" %>
+ 
+</div>
+
+</body>
+</html>
