@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Show Employee</title>
-
   <style>
-    /* Style for the container */
+    /* Container styles */
     .container {
       width: 80%; /* Set a fixed width */
       max-width: 600px; /* Maximum width for responsiveness */
@@ -53,75 +52,64 @@
     }
 
     /* Style for images */
-    img {
-      max-width: 100%; /* Limit maximum width of the image */
+    .card-image {
+      max-width: 100%; /* Maximum width */
       height: auto; /* Maintain aspect ratio */
-      display: block; /* Ensure proper alignment */
-      margin: 0 auto; /* Center the image */
-    }
-
-    /* Style for document list */
-    .document-list {
-      margin-top: 20px;
-    }
-
-    .document-list h2 {
-      margin-bottom: 10px;
-      color: #333; /* Dark Gray */
-    }
-
-    .document-list ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .document-list li {
-      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1 class="header">Employee Information</h1>
 
-<div class="container">
-  <h1 class="header">Employee Information</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First Name</td>
+          <td><%= @employee.f_name %></td>
+        </tr>
+        <tr>
+          <td>Middle Name</td>
+          <td><%= @employee.m_name %></td>
+        </tr>
+        <tr>
+          <td>Surname</td>
+          <td><%= @employee.surname %></td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Attribute</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>First Name</td>
-        <td><%= @employee.f_name %></td>
-      </tr>
-      <tr>
-        <td>Middle Name</td>
-        <td><%= @employee.m_name %></td>
-      </tr>
-      <tr>
-        <td>Surname</td>
-        <td><%= @employee.surname %></td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+    <h2 class="header">Documents</h2>
 
-  <div class="document-list">
-    <h2>Documents</h2>
     <% if @employee.documents.any? %>
-      <ul>
-        <% @employee.documents.each do |document| %>
-          <li><%= document.name %></li>
-        <% end %>
-      </ul>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @employee.documents.each do |document| %>
+            <tr>
+              <td><%= image_tag document.image, class: "card-image" if document.image.attached? %></td>
+              <td><%= document.name %></td>
+              <td><%= document.type %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% else %>
       <p>No documents found for this employee.</p>
     <% end %>
   </div>
-</div>
-
 </body>
 </html>

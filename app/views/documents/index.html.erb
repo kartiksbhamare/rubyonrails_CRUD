@@ -106,7 +106,7 @@
       <tr>
         <td><%= document.name %></td>
         <td><%= document.type %></td>
-        <td><%= document.employee_id %></td>
+       <td><%= link_to document.employee.f_name, employee_path(document.employee) %></td>
         <td>
           <div class="dropdown">
             <button class="button">Actions</button>

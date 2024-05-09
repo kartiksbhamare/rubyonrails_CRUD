@@ -95,6 +95,11 @@
       <%= form.label :surname, "Surname", class: "form__label" %>
       <%= form.text_field :surname, class: "form__input", placeholder: "Surname" %>
     </div>
+    
+    <div class="field">
+  <%= form.label :date_of_birth, "Date of Birth", class: "form__label" %>
+  <%= form.date_field :date_of_birth, class: "form__input", placeholder: "Date of Birth" %>
+</div>
 
     <div class="actions">
       <%= form.submit %>
